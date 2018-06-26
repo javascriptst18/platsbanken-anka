@@ -1,19 +1,38 @@
-
 const valAntal = document.getElementById('valAntal');
 let nyttAntal = 10;
 
+
+
 //hämtar annonser från API
 function hamtaAnnonser() {
-fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
-  .then(response => response.json())
-  .then(result => {
-    //Plockar ut valt antal annonser för visning
-    for (let i = 0; i < nyttAntal; i++) { 
-      let element = result.matchningslista.matchningdata[i];
-      console.log(element);
-    }
-  })
+  fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
+    .then(response => response.json())
+    .then(result => {
+     getCardInfo(result);
+    })
 }
+
+//DOM-manipulation för att lägga in all info i korten
+ //Plockar ut valt antal annonser för visning
+function getCardInfo(result) {
+   for (let i = 0; i < nyttAntal; i++) {
+  let element = result.matchningslista.matchningdata[i];
+  console.log(element);
+  let getCard = document.querySelector("#card");
+  let card = `<div class="cardContainer">
+    <div class="cardBody">
+      <h1 class="cardTitle">${result.matchningslista.matchningdata[i].annonsrubrik}</h1>
+      <h2>${result.matchningslista.matchningdata[i].arbetsplatsnamn}</h2>
+      <h3>${result.matchningslista.matchningdata[i].kommunnamn}</h3>
+      <br>
+      <h5>Yrkesbenämning: ${result.matchningslista.matchningdata[i].yrkesbenamning}</h2>
+      <h5>Anställningstyp: ${result.matchningslista.matchningdata[i].anstallningstyp}</h3>
+     <a href="" class="applyLink"><button class="buttonInCard">Ansök här<br> <p class="lastApply">innan ${result.matchningslista.matchningdata[i].sista_ansokningsdag}</p></button></a>
+    </div>
+  </div>`
+  getCard.insertAdjacentHTML("afterbegin", card);
+}
+  }
 
 //Väljer antal annonser som visas
 function antalAnnonser(event) {
@@ -26,4 +45,5 @@ function antalAnnonser(event) {
 //RUN, RUN RUN YOUR CODE
 hamtaAnnonser();
 valAntal.addEventListener('submit', antalAnnonser);
+
 

@@ -4,7 +4,6 @@
 
 body {
   font-family: $mainFont;
-  line-height: 0.9;
 }
 
 h1 {
@@ -17,4 +16,8 @@ h2 {
 
 h3{
   font-size: 1em;
+}
+
+h5 {
+  line-height: 0.5;
 }
