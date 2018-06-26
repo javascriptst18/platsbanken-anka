@@ -14,7 +14,7 @@ fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
   .then(response => response.json())
   .then(result => {
     // console.log(result.matchningslista.matchningdata);
-    for (let i = 0; i < nyttAntal; i++) {
+    for (let i = 0; i < nyttAntal; i++) { //nyttAntal uppdateras ej av formulär: why??
       let element = result.matchningslista.matchningdata[i];
       console.log(element);
       
