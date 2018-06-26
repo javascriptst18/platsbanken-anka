@@ -12,7 +12,7 @@ fetch(url)
     //Visar antal jobb
     console.log(result.matchningslista.antal_platsannonser);
    getCardInfo(result);
-    }
+  
   })
 }
 
