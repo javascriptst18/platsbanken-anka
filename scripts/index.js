@@ -7,7 +7,7 @@
 
 // searchByCriteria('platsannonser/matchning?lanid=1&yrkesomradeid=3&antalrader=30');
 
-fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
+/* fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
   .then(response => response.json())
   .then(result => {
     // console.log(result.matchningslista.matchningdata);
@@ -16,4 +16,11 @@ fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
       console.log(element);
       
     }
+  })  */
+
+  fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
+  .then(response => response.json())
+  .then(result => {
+    // console.log(result.matchningslista.matchningdata);
+    console.log(result.matchningslista.antal_platsannonser)
   })
