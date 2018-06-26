@@ -7,6 +7,8 @@ function hamtaAnnonser() {
 fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
   .then(response => response.json())
   .then(result => {
+    //Visar antal jobb
+    console.log(result.matchningslista.antal_platsannonser);
     //Plockar ut valt antal annonser för visning
     for (let i = 0; i < nyttAntal; i++) { 
       let element = result.matchningslista.matchningdata[i];
