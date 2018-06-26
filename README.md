@@ -201,3 +201,4 @@ Exempel:
 **När**: den arbetssökande klickar på knappen för föregående sida
 
 **Så**: visas den föregående sidan i träfflistan
+# platsbanken-anka
