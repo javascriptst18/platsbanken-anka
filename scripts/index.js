@@ -1,5 +1,6 @@
 
 const valAntal = document.getElementById('valAntal');
+const jobSearch = document.getElementById('jobSearch');
 let nyttAntal = 10;
 
 //hämtar annonser från API
@@ -27,6 +28,12 @@ function antalAnnonser(event) {
   nyttAntal = form.antal.value;
   hamtaAnnonser();
 }
+
+//Sökfunktionens delar
+function handleSearch(event) {
+  event.preventDefault();
+}
+
 
 //RUN, RUN RUN YOUR CODE
 hamtaAnnonser();
