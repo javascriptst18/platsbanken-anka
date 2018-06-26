@@ -17,10 +17,10 @@
       
     }
   })  */
-
+  /* Nedanför har jag skrivit in adressen där jag "fetchar" datan från arbetsförmedlningen. */
   fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
   .then(response => response.json())
+  /* then funktionen hämtar data från json och gör den kompatibel med js */
   .then(result => {
-    // console.log(result.matchningslista.matchningdata);
     console.log(result.matchningslista.antal_platsannonser)
   })
