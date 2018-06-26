@@ -1,5 +1,14 @@
-$banana: #fac863;
 
-.🍌 {
-  background-color: $banana;
+@import "fonts.scss";
+
+body {
+  font-family: $mainFont;
 }
+
+
+
+// $banana: #fac863;
+
+// .🍌 {
+//   background-color: $banana;
+// }
