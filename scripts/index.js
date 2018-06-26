@@ -13,7 +13,6 @@ fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
     // console.log(result.matchningslista.matchningdata);
     for (let i = 0; i < 10; i++) {
       let element = result.matchningslista.matchningdata[i];
-      console.log(element);
-      
+      console.log(element);  
     }
   })
