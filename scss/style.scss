@@ -1,14 +1,12 @@
 
 @import "fonts.scss";
+@import "card.scss";
 
 body {
   font-family: $mainFont;
+  line-height: 0.8;
 }
 
-
-
-// $banana: #fac863;
-
-// .🍌 {
-//   background-color: $banana;
-// }
+h5 {
+  line-height: 0.5;
+}
