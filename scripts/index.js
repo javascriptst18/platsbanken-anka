@@ -4,7 +4,8 @@ let nyttAntal = 10;
 
 //hämtar annonser från API
 function hamtaAnnonser() {
-fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
+  let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1&sida=1&antalrader=${nyttAntal}`;
+fetch(url)
   .then(response => response.json())
   .then(result => {
     //Visar antal jobb
