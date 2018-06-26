@@ -14,18 +14,21 @@ fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
   .then(response => response.json())
   .then(result => {
     // console.log(result.matchningslista.matchningdata);
-    for (let i = 0; i < nyttAntal; i++) { //nyttAntal uppdateras ej av formulär: why??
-      let element = result.matchningslista.matchningdata[i];
-      console.log(element);
-      
+      hamtaAnnonser();
     }
   })
+
+function hamtaAnnonser() {
+for (let i = 0; i < nyttAntal; i++) { //nyttAntal uppdateras ej av formulär: why??
+  let element = result.matchningslista.matchningdata[i];
+  console.log(element);
+}
 
 function antalAnnonser(event) {
   event.preventDefault();
   const form = event.target;
   nyttAntal = form.antal.value;
-  return nyttAntal;
+  hamtaAnnonser();
 }
 
 valAntal.addEventListener('submit', antalAnnonser);
