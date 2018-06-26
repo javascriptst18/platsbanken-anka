@@ -35,6 +35,7 @@ function handleSearch(event) {
   const searchForm = event.target;
   let searchValue = searchForm.writeJobSearch.value;
   return searchValue;
+  //kommer behöva mer flexibel url-variabel för att använda searchValue
 }
 
 //RUN, RUN RUN YOUR CODE
