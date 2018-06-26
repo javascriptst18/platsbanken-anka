@@ -5,11 +5,15 @@ let nyttAntal = 10;
 
 //hämtar annonser från API
 function hamtaAnnonser() {
-  fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
-    .then(response => response.json())
-    .then(result => {
-     getCardInfo(result);
-    })
+  let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1&sida=1&antalrader=${nyttAntal}`;
+fetch(url)
+  .then(response => response.json())
+  .then(result => {
+    //Visar antal jobb
+    console.log(result.matchningslista.antal_platsannonser);
+   getCardInfo(result);
+    }
+  })
 }
 
 //DOM-manipulation för att lägga in all info i korten
