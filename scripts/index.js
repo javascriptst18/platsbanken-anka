@@ -12,7 +12,9 @@ fetch("http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1")
     //Plockar ut valt antal annonser för visning
     for (let i = 0; i < nyttAntal; i++) { 
       let element = result.matchningslista.matchningdata[i];
-      console.log(element);
+
+      console.log(element);  
+
     }
   })
 }
