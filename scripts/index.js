@@ -33,7 +33,7 @@ function getCardInfo(result) {
       <h3>${result.matchningslista.matchningdata[i].kommunnamn}</h3>
       <p>Yrkesbenämning: ${result.matchningslista.matchningdata[i].yrkesbenamning}<p>
       <p>Anställningstyp: ${result.matchningslista.matchningdata[i].anstallningstyp}<p>
-     <a href=""><button class="buttonInCard">Ansök här<br> <p class="lastApply">innan ${applyDateSplit.join("")}</p></button></a>
+     <a href="${result.matchningslista.matchningdata[i].annonsurl}"><button class="buttonInCard">Ansök här<br> <p class="lastApply">innan ${applyDateSplit.join("")}</p></button></a>
     </div>
   </div>`
     getCard.insertAdjacentHTML("beforeend", card);
