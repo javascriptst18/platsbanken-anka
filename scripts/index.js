@@ -32,10 +32,11 @@ function antalAnnonser(event) {
 //Sökfunktionens delar
 function handleSearch(event) {
   event.preventDefault();
+  const searchForm = event.target;
+  let searchValue = searchForm.writeJobSearch.value;
+  return searchValue;
 }
-
 
 //RUN, RUN RUN YOUR CODE
 hamtaAnnonser();
 valAntal.addEventListener('submit', antalAnnonser);
-
