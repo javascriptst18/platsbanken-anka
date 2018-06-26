@@ -26,3 +26,4 @@ function antalAnnonser(event) {
 //RUN, RUN RUN YOUR CODE
 hamtaAnnonser();
 valAntal.addEventListener('submit', antalAnnonser);
+
