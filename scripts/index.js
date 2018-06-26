@@ -12,7 +12,6 @@ fetch(url)
     //Visar antal jobb
     console.log(result.matchningslista.antal_platsannonser);
    getCardInfo(result);
-  
   })
 }
 
@@ -29,12 +28,12 @@ function getCardInfo(result) {
       <h2>${result.matchningslista.matchningdata[i].arbetsplatsnamn}</h2>
       <h3>${result.matchningslista.matchningdata[i].kommunnamn}</h3>
       <br>
-      <h5>Yrkesbenämning: ${result.matchningslista.matchningdata[i].yrkesbenamning}</h2>
-      <h5>Anställningstyp: ${result.matchningslista.matchningdata[i].anstallningstyp}</h3>
+      <p>Yrkesbenämning: ${result.matchningslista.matchningdata[i].yrkesbenamning}<p>
+      <p>Anställningstyp: ${result.matchningslista.matchningdata[i].anstallningstyp}<p>
      <a href="" class="applyLink"><button class="buttonInCard">Ansök här<br> <p class="lastApply">innan ${result.matchningslista.matchningdata[i].sista_ansokningsdag}</p></button></a>
     </div>
   </div>`
-  getCard.insertAdjacentHTML("afterbegin", card);
+  getCard.insertAdjacentHTML("beforeend", card);
 }
   }
 
