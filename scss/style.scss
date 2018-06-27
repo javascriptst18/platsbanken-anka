@@ -1,6 +1,7 @@
 @import "text.scss";
 @import "card.scss";
 @import "navigation.scss";
+@import "header.scss";
 
 
 .mainWrapper {
@@ -14,20 +15,6 @@
   margin: 0;
 }
 
-header {
-  width: 95%;
-  height: 300px;
-  background-image: url("../images/happy-businessman.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 20px auto;
-  display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
 
 body {
   font-family: $mainFont;
@@ -36,22 +23,6 @@ body {
   margin: 0;
 }
 
-.mainTitle {
-  width: 100%;
-  display: flex;
-  display: block;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: center;
-  padding-top: 20px;
-  // margin-top: 20px;
-}
-
-.tagline {
-  margin-top: 20px;
-  padding-top: 20px;
-  margin-bottom: -20px;
-}
 
 #fieldList {
  width: 60%;
