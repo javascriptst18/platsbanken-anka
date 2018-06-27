@@ -20,6 +20,7 @@ let searchVariables = {
   keyword: "",
   lanid: 1,
   page: 1,
+  numberOfJobs: 0
 }
 
 //FUNKTIONER
@@ -31,9 +32,11 @@ function getAdsAndPrint() {
   fetch(url)
     .then(response => response.json())
     .then(result => {
-      //Visar antal jobb
-      console.log(result.matchningslista.antal_platsannonser);
+      //Sparar antal jobb
+      
       getCardInfo(result);
+      searchVariables.numberOfJobs = result.matchningslista.antal_platsannonser;
+      createPageNumber();
     })
 }
 
@@ -122,12 +125,6 @@ slct1.addEventListener('change', function(){
       });
 });
 
-
-//RUN, RUN RUN YOUR CODE
-getAdsAndPrint();
-getDOM.valAntal.addEventListener('submit', antalAnnonser);
-getDOM.jobSearch.addEventListener('submit', handleSearch);
-
 // Hämtar annonser per yrkesområde
 function getAdsByField() {
   let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesomraden`;
@@ -148,4 +145,26 @@ function getAdsByField() {
     })
 }
 
-getAdsByField()
+//Sidväljare för att se fler annonser
+
+//steg 1: generera sidnummer till view
+function createPageNumber() {
+  console.log("I länet finns det " + searchVariables.numberOfJobs + " jobb!");
+  let nOfPages = searchVariables.numberOfJobs/searchVariables.nyttAntal;
+  console.log(nOfPages + "sidor för att visa alla jobb");
+  
+ 
+}
+
+
+//steg 2: funktionalitet bläddra framåt
+ // searchVariables.page = 
+
+//steg 3: funktionalitet bläddra bakåt
+
+//RUN, RUN RUN YOUR CODE
+getAdsAndPrint();
+getDOM.valAntal.addEventListener('submit', antalAnnonser);
+getDOM.jobSearch.addEventListener('submit', handleSearch);
+
+getAdsByField();
