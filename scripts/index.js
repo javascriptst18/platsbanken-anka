@@ -118,6 +118,7 @@ slct1.addEventListener('change', function(){
           console.log(data);
       });
 });
+listOfLan.insertAdjacentHTML("beforeend", selectedValue);
 
 
 
