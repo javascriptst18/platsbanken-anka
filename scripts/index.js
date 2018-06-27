@@ -20,6 +20,7 @@ let searchVariables = {
   keyword: "",
   lanid: 1,
   page: 1,
+  lastPage: 1,
   numberOfJobs: 0
 }
 
@@ -33,13 +34,13 @@ function getAdsAndPrint() {
     .then(response => response.json())
     .then(result => {
       //Sparar antal jobb
-      
       getCardInfo(result);
       searchVariables.numberOfJobs = result.matchningslista.antal_platsannonser;
-      createPageNumber();
+      searchVariables.lastPage = result.matchningslista.antal_sidor;
+      console.log(searchVariables);
     })
-}
-
+  }
+  
 //DOM-manipulation för att lägga in all info i korten
 //Plockar ut valt antal annonser för visning
 function getCardInfo(result) {
@@ -148,14 +149,9 @@ function getAdsByField() {
 //Sidväljare för att se fler annonser
 
 //steg 1: generera sidnummer till view
-function createPageNumber() {
-  console.log("I länet finns det " + searchVariables.numberOfJobs + " jobb!");
-  let nOfPages = searchVariables.numberOfJobs/searchVariables.nyttAntal;
-  console.log(nOfPages + "sidor för att visa alla jobb");
+function getPageOptions() {
   
- 
 }
-
 
 //steg 2: funktionalitet bläddra framåt
  // searchVariables.page = 
@@ -163,7 +159,9 @@ function createPageNumber() {
 //steg 3: funktionalitet bläddra bakåt
 
 //RUN, RUN RUN YOUR CODE
+
 getAdsAndPrint();
+
 getDOM.valAntal.addEventListener('submit', antalAnnonser);
 getDOM.jobSearch.addEventListener('submit', handleSearch);
 
