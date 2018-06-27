@@ -1,0 +1,26 @@
+$mainFont: 'Lato', sans-serif;
+$titleFont: 'Shrikhand', cursive;
+
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 1.2em;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+.title {
+  font-family: $titleFont;
+  font-size: 3em;
+  text-align: center;
+}
+
+.tagline {
+  font-family: $titleFont;
+  font-size: 1.5em;
+  text-align: center;
+}
