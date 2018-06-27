@@ -21,16 +21,19 @@ function getCardInfo(result) {
   for (let i = 0; i < nyttAntal; i++) {
     let element = result.matchningslista.matchningdata[i];
     console.log(element);
+
+    let lastApplyDate = result.matchningslista.matchningdata[i].sista_ansokningsdag;
+    let applyDateSplit = lastApplyDate.split("", 10);
+
     let getCard = document.querySelector("#card");
     let card = `<div class="cardContainer">
     <div class="cardBody">
       <h1 class="cardTitle">${result.matchningslista.matchningdata[i].annonsrubrik}</h1>
       <h2>${result.matchningslista.matchningdata[i].arbetsplatsnamn}</h2>
       <h3>${result.matchningslista.matchningdata[i].kommunnamn}</h3>
-      <br>
       <p>Yrkesbenämning: ${result.matchningslista.matchningdata[i].yrkesbenamning}<p>
       <p>Anställningstyp: ${result.matchningslista.matchningdata[i].anstallningstyp}<p>
-     <a href="" class="applyLink"><button class="buttonInCard">Ansök här<br> <p class="lastApply">innan ${result.matchningslista.matchningdata[i].sista_ansokningsdag}</p></button></a>
+     <a href="${result.matchningslista.matchningdata[i].annonsurl}"><button class="buttonInCard">Ansök här<br> <p class="lastApply">innan ${applyDateSplit.join("")}</p></button></a>
     </div>
   </div>`
     getCard.insertAdjacentHTML("beforeend", card);
@@ -46,5 +49,6 @@ function antalAnnonser(event) {
 }
 
 //RUN, RUN RUN YOUR CODE
+
 getAdsAndPrint();
 valAntal.addEventListener('submit', antalAnnonser);
