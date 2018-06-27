@@ -4,7 +4,7 @@ let nyttAntal = 10;
 
 
 //hämtar annonser från API
-function hamtaAnnonser() {
+function getAdsAndPrint() {
   let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1&sida=1&antalrader=${nyttAntal}`;
   fetch(url)
     .then(response => response.json())
@@ -45,9 +45,10 @@ function antalAnnonser(event) {
   event.preventDefault();
   const form = event.target;
   nyttAntal = form.antal.value;
-  hamtaAnnonser();
+  getAdsAndPrint();
 }
 
 //RUN, RUN RUN YOUR CODE
-hamtaAnnonser();
+
+getAdsAndPrint();
 valAntal.addEventListener('submit', antalAnnonser);
