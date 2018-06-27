@@ -108,20 +108,17 @@ function fetchLan() {
 fetchLan();
 
 
-// Aktiveras bara när vi ändrar i dropdown
-slct1.addEventListener('change', function () {
+// Aktiveras bara när vi ändrar i dropdown, när vi trycker på specifikt län dras kortet för det länet ut. 
+slct1.addEventListener('change', function() {
   let selectedValue = slct1.value;
-  fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
-    .then((res) => res.json())
-    .then((data) => {
-      // Istället för att logga, kalla på er funktion som lägger till annonser på sidan
-      
-      let clearCard = document.getElementById("card");
-      clearCard.innerHTML = "";
-      getCardInfo(data);
-    });
-});
-
+      fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
+          .then((res) => res.json())
+          .then((data) =>{ 
+              let clearCard = document.getElementById("card");
+              clearCard.innerHTML = "";
+              getCardInfo(data);
+      });
+  });
 
 
 //RUN, RUN RUN YOUR CODE
