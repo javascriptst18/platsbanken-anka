@@ -1,13 +1,20 @@
-const valAntal = document.getElementById('valAntal');
-const jobSearch = document.getElementById('jobSearch');
-let nyttAntal = 10;
+const forms = {
+ valAntal: document.getElementById('valAntal'),
+jobSearch: document.getElementById('jobSearch'),
+}
 
-
+//UPPDATERA ALLA VARIABLER MED OBJEKTET OCH PUNKT
+let searchVariables = {
+  nyttAntal: 10,
+  keyword: "",
+  lanid: 1,
+  page: 1,
+}
 
 //hämtar annonser från API
 function hamtaAnnonser() {
-  let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1&sida=1&antalrader=${nyttAntal}`;
-fetch(url)
+  let url= `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${searchVariables.lanid}&nyckelord=${searchVariables.keyword}&sida=${searchVariables.page}&antalrader=${searchVariables.nyttAntal}`;
+  fetch(url)
   .then(response => response.json())
   .then(result => {
     //Visar antal jobb
@@ -19,7 +26,7 @@ fetch(url)
 //DOM-manipulation för att lägga in all info i korten
  //Plockar ut valt antal annonser för visning
 function getCardInfo(result) {
-   for (let i = 0; i < nyttAntal; i++) {
+   for (let i = 0; i < searchVariables.nyttAntal; i++) {
   let element = result.matchningslista.matchningdata[i];
   console.log(element);
   let getCard = document.querySelector("#card");
@@ -42,7 +49,7 @@ function getCardInfo(result) {
 function antalAnnonser(event) {
   event.preventDefault();
   const form = event.target;
-  nyttAntal = form.antal.value;
+  searchVariables.nyttAntal = form.antal.value;
   hamtaAnnonser();
 }
 
@@ -50,13 +57,13 @@ function antalAnnonser(event) {
 function handleSearch(event) {
   event.preventDefault();
   const searchForm = event.target;
-  let searchValue = searchForm.writeJobSearch.value;
-  return searchValue;
-  //kommer behöva mer flexibel url-variabel för att använda searchValue
+  searchVariables.keyword = searchForm.keyword.value;
+  hamtaAnnonser();
 }
 
 //RUN, RUN RUN YOUR CODE
 hamtaAnnonser();
-valAntal.addEventListener('submit', antalAnnonser);
+forms.valAntal.addEventListener('submit', antalAnnonser);
+forms.jobSearch.addEventListener('submit', handleSearch);
 
 
