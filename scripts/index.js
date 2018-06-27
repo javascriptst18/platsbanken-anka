@@ -110,9 +110,15 @@ fetchLan();
 
 // Aktiveras bara när vi ändrar i dropdown, när vi trycker på specifikt län dras kortet för det länet ut. 
 slct1.addEventListener('change', function(){
-  searchVariables.lanid = slct1.value;
-  getAdsAndPrint();
-});
+  let selectedValue = slct1.value;
+      fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
+          .then((res) => res.json())
+          .then((data) =>{ 
+              let clearCard = document.getElementById("card");
+              clearCard.innerHTML = "";
+              getCardInfo(data);
+      });
+  });
 
 
 
