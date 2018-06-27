@@ -1,19 +1,60 @@
-
-@import "fonts.scss";
+@import "text.scss";
 @import "card.scss";
+
+.mainWrapper {
+  display: flex;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 200vh;
+    margin:0;
+}
+
+header {
+  width: 95%;
+  height: 250px;
+  background-color: cadetblue;
+  margin: 20px auto;
+}
 
 body {
   font-family: $mainFont;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
 }
 
-h1 {
-  font-size: 1.5em;
+.mainTitle {
+  width:100%;
+  display: flex;
+  display: block;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+  // padding-top: 20px;
+  // margin-top: 20px;
 }
 
-h2 {
-  font-size: 1.2em;
+.navigationMenu { //Varför i helvete ligger den i mitten?! Den ligger längst ner om main-wrapper har height: 100vh; men inte annars, HUR ÄR DET ENS MÖJLIGT?!
+  display: flex;
+    align-items: center;
+    // flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: baseline;
 }
 
-h3{
-  font-size: 1em;
+.navLink {
+  background-color: white;
+  padding: 7px;
+  border-radius: 3px;
+  color:black;
+  font-weight: 700;
+}
+
+.tagline {
+ margin-top: 20px;
+ padding-top: 20px;
+ margin-bottom: -20px;
 }
