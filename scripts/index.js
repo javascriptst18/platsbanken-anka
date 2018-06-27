@@ -122,6 +122,12 @@ slct1.addEventListener('change', function(){
       });
 });
 
+
+//RUN, RUN RUN YOUR CODE
+getAdsAndPrint();
+getDOM.valAntal.addEventListener('submit', antalAnnonser);
+getDOM.jobSearch.addEventListener('submit', handleSearch);
+
 // Hämtar annonser per yrkesområde
 function getAdsByField() {
   let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesomraden`;
@@ -141,11 +147,5 @@ function getAdsByField() {
       console.log(fieldList);
     })
 }
-
-//RUN, RUN RUN YOUR CODE
-getAdsAndPrint();
-
-getDOM.valAntal.addEventListener('submit', antalAnnonser);
-getDOM.jobSearch.addEventListener('submit', handleSearch);
 
 getAdsByField()
