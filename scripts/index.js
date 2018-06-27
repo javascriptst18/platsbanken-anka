@@ -108,20 +108,19 @@ function fetchLan(){
 
 fetchLan();
 
-// Aktiveras bara när vi ändrar i dropdown
+// Aktiveras bara när vi ändrar i dropdown och sätts ihop med kortet - När user väljer län visas specifika länets jobbannonser 
 slct1.addEventListener('change', function(){
-  let selectedValue = slct1.value;
-  fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
-      .then((res) => res.json())
-      .then((data) =>{ 
-          // Istället för att logga, kalla på er funktion som lägger till annonser på sidan
-          console.log(data);
-          getCardInfo()
-      });
-});
-listOfLan.insertAdjacentHTML("beforeend", selectedValue);
+  searchVariables.lanid = slct1.value;
+  getAdsAndPrint();
+         });
+ 
 
 
+/*let selectedValue = slct1.value;
+      fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
+          .then((res) => res.json())
+          .then((data) =>{ */
+              
 
 //RUN, RUN RUN YOUR CODE
 getAdsAndPrint();
