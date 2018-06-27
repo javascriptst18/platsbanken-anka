@@ -13,6 +13,7 @@ const getDOM = {
   valAntal: document.getElementById('valAntal'),
   jobSearch: document.getElementById('jobSearch'),
   getCard: document.querySelector("#card"),
+  pageUpper: document.getElementById('pageUpper'),
   pageChoiceUpper: document.getElementById('pageChoiceUpper')
 }
 
@@ -34,8 +35,10 @@ function getAdsAndPrint() {
     .then(result => {
       //Visar antal jobb
 
-      searchVariables. console.log(result.matchningslista.antal_platsannonser);
+      searchVariables.numberOfJobs = result.matchningslista.antal_platsannonser;
+      searchVariables.lastPage =  result.matchningslista.antal_sidor;
       getCardInfo(result);
+      pageNumber();
     })
 }
 
@@ -116,7 +119,14 @@ fetchLan();
 //Generera val av sidnummer
 function pageNumber() {
   for (i=1; i <=searchVariables.lastPage ; i++)
-    getDOM.pageChoiceUpper.
+    getDOM.pageChoiceUpper.insertAdjacentHTML("beforeend", `<option value="${i}">${i}</option>`);
+}
+
+//Navigera till rätt sida
+function navToPage(event) {
+  event.preventDefault();
+  searchVariables.page = event.target.pageChoiceUpper.value;
+  getAdsAndPrint();
 }
 
 //RUN, RUN RUN YOUR CODE
@@ -128,7 +138,8 @@ getAdsAndPrint();
 getDOM.valAntal.addEventListener('submit', antalAnnonser);
 //Fritextsök
 getDOM.jobSearch.addEventListener('submit', handleSearch);
-
+//Navigera till olika sidor
+getDOM.pageUpper.addEventListener('submit', navToPage);
 
 
 // Hämtar annonser per yrkesområde och lägger in de i dropdown i headern.
