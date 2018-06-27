@@ -111,36 +111,12 @@ function fetchLan() {
 
 fetchLan();
 
-<<<<<<< HEAD
-// Aktiveras bara när vi ändrar i dropdown och sätts ihop med kortet - När user väljer län visas specifika länets jobbannonser 
+
+// Aktiveras bara när vi ändrar i dropdown, när vi trycker på specifikt län dras kortet för det länet ut. 
 slct1.addEventListener('change', function(){
   searchVariables.lanid = slct1.value;
   getAdsAndPrint();
-         });
- 
 
-
-/*let selectedValue = slct1.value;
-      fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
-          .then((res) => res.json())
-          .then((data) =>{ */
-              
-
-=======
-// Aktiveras bara när vi ändrar i dropdown
-slct1.addEventListener('change', function () {
-  let selectedValue = slct1.value;
-  fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
-    .then((res) => res.json())
-    .then((data) => {
-      // Istället för att logga, kalla på er funktion som lägger till annonser på sidan
-      console.log(data);
-      getCardInfo();
-    });
-});
-
-
->>>>>>> de9016ea0f1a1ad24a39cf5ab21fa2e3870b6efd
 //RUN, RUN RUN YOUR CODE
 getAdsAndPrint();
 getDOM.valAntal.addEventListener('submit', antalAnnonser);
