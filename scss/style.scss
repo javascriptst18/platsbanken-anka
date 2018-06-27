@@ -1,5 +1,7 @@
 @import "text.scss";
 @import "card.scss";
+@import "navigation.scss";
+@import "header.scss";
 
 
 .mainWrapper {
@@ -13,16 +15,6 @@
   margin: 0;
 }
 
-header {
-  width: 95%;
-  height: 250px;
-  background-color: cadetblue;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
 
 body {
   font-family: $mainFont;
@@ -31,31 +23,19 @@ body {
   margin: 0;
 }
 
-.mainTitle {
-  width: 100%;
-  display: flex;
-  display: block;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: center;
-  // padding-top: 20px;
-  // margin-top: 20px;
+
+#fieldList {
+ width: 60%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ flex-wrap: wrap;  
 }
 
-.navigationMenu {
-
+.buttonField {
+  background-color: rgb(78, 194, 233);
 }
 
-.navLink {
-  background-color: white;
-  padding: 7px;
-  border-radius: 3px;
-  color: black;
-  font-weight: 700;
-}
-
-.tagline {
-  margin-top: 20px;
-  padding-top: 20px;
-  margin-bottom: -20px;
+#valAntal {
+  padding: 20px;
 }
