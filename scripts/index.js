@@ -1,37 +1,84 @@
+/* INNEHÅLL
+* Globala variabler
+* Funktioner
+* - startvyn
+* - Anpassningar
+* - Sökning
+* Koden körs
+*/ 
 
-const valAntal = document.getElementById('valAntal');
-let nyttAntal = 10;
+//GLOBALA VARIABLER
+
+const getDOM = {
+ valAntal: document.getElementById('valAntal'),
+  jobSearch: document.getElementById('jobSearch'),
+  getCard: document.querySelector("#card")
+}
+
+let searchVariables = {
+  nyttAntal: 10,
+  keyword: "",
+  lanid: 1,
+  page: 1,
+}
+
+//FUNKTIONER
 
 //hämtar annonser från API
-function hamtaAnnonser() {
-  let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1&sida=1&antalrader=${nyttAntal}`;
-fetch(url)
-  .then(response => response.json())
-  .then(result => {
-    //Visar antal jobb
-    console.log(result.matchningslista.antal_platsannonser);
-    //Plockar ut valt antal annonser för visning
-    for (let i = 0; i < nyttAntal; i++) { 
-      let element = result.matchningslista.matchningdata[i];
+function getAdsAndPrint() {
+  let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${searchVariables.lanid}&nyckelord=${searchVariables.keyword}&sida=${searchVariables.page}&antalrader=${searchVariables.nyttAntal}`;
+  getDOM.getCard.innerHTML = "";
+  fetch(url)
+    .then(response => response.json())
+    .then(result => {
+      //Visar antal jobb
+      console.log(result.matchningslista.antal_platsannonser);
+      getCardInfo(result);
+    })
+}
 
-      console.log(element);  
+//DOM-manipulation för att lägga in all info i korten
+//Plockar ut valt antal annonser för visning
+function getCardInfo(result) {
+  for (let i = 0; i < searchVariables.nyttAntal; i++) {
+    let element = result.matchningslista.matchningdata[i];
+    console.log(element);
 
-    }
-  })
+    let lastApplyDate = result.matchningslista.matchningdata[i].sista_ansokningsdag;
+    let applyDateSplit = lastApplyDate.split("", 10);
+
+    let card = `<div class="cardContainer">
+    <div class="cardBody">
+      <h1 class="cardTitle">${result.matchningslista.matchningdata[i].annonsrubrik}</h1>
+      <h2>${result.matchningslista.matchningdata[i].arbetsplatsnamn}</h2>
+      <h3>${result.matchningslista.matchningdata[i].kommunnamn}</h3>
+      <p>Yrkesbenämning: ${result.matchningslista.matchningdata[i].yrkesbenamning}<p>
+      <p>Anställningstyp: ${result.matchningslista.matchningdata[i].anstallningstyp}<p>
+    </div>
+    <div class="buttonParent">
+     <a href="${result.matchningslista.matchningdata[i].annonsurl}"><button class="buttonInCard">Ansök här<br> <p class="lastApply">innan ${applyDateSplit.join("")}</p></button></a>
+    </div>
+  </div>`
+
+    getDOM.getCard.insertAdjacentHTML("beforeend", card);
+  }
 }
 
 //Väljer antal annonser som visas
 function antalAnnonser(event) {
   event.preventDefault();
   const form = event.target;
-  nyttAntal = form.antal.value;
-  hamtaAnnonser();
+  searchVariables.nyttAntal = form.antal.value;
+  getAdsAndPrint();
 }
 
-//RUN, RUN RUN YOUR CODE
-hamtaAnnonser();
-valAntal.addEventListener('submit', antalAnnonser);
-
+//Sökfunktionens delar
+function handleSearch(event) {
+  event.preventDefault();
+  const searchForm = event.target;
+  searchVariables.keyword = searchForm.keyword.value;
+  getAdsAndPrint();
+}
 
 // Populate lägger till en ny <option> för varje län som finns på arbetsförmedlingen
 function populate(listOfLan) {
@@ -72,4 +119,10 @@ slct1.addEventListener('change', function(){
       });
 });
 
+
+
+//RUN, RUN RUN YOUR CODE
+getAdsAndPrint();
+getDOM.valAntal.addEventListener('submit', antalAnnonser);
+getDOM.jobSearch.addEventListener('submit', handleSearch);
 
