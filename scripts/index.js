@@ -42,6 +42,8 @@ function getCardInfo(result) {
       <h3>${result.matchningslista.matchningdata[i].kommunnamn}</h3>
       <p>Yrkesbenämning: ${result.matchningslista.matchningdata[i].yrkesbenamning}<p>
       <p>Anställningstyp: ${result.matchningslista.matchningdata[i].anstallningstyp}<p>
+    </div>
+    <div class="buttonParent">
      <a href="${result.matchningslista.matchningdata[i].annonsurl}"><button class="buttonInCard">Ansök här<br> <p class="lastApply">innan ${applyDateSplit.join("")}</p></button></a>
     </div>
   </div>`
