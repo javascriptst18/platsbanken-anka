@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
@@ -25,32 +25,38 @@
 
       <div class="navigationMenu">
         <nav>
+          <div class="navDropdowns">
+         <select class="selectLan" id="slct1" name="slct1"></select>
+         <select class="selectField" id="category" name="category"></select>
+        </div>
+          <!-- <a class="navLink" href="#">Kat 1</a>
           <a class="navLink" href="#">Kat 1</a>
-          <a class="navLink" href="#">Kat 1</a>
-          <a class="navLink" href="#">Kat 1</a>
+          <a class="navLink" href="#">Kat 1</a> -->
+          <form action="" id="jobSearch">
+              <label for="keyword">Sök jobb</label>
+              <input type="search" name="keyword" id="keyword" placeholder="Din sökning">
+              <input type="submit" value="Sök">
+            </form>
         </nav>
       </div>
+      
+
 
     </header>
 
 
-    <form action="" id="jobSearch">
-        <label for="keyword">Sök jobb</label>
-        <input type="search" name="keyword" id="keyword" placeholder="Din sökning">
-        <input type="submit" value="sök">
-      </form>
-    <form action="" id="valAntal">
-      <label for="antal">Antal annonser</label>
-      <select name="antal" id="antal">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-      </select>
-      <input type="submit" value="Välj">
-    </form>
-
-
+    <div id="fieldList"></div>
     <div id="card"></div>
+
+    <form action="" id="valAntal">
+        <label for="antalAnnonser">Antal annonser</label>
+        <select name="antal" id="antal">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select>
+        <input type="submit" value="Välj">
+      </form>
 
   </div>
 
