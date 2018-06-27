@@ -116,6 +116,7 @@ slct1.addEventListener('change', function(){
       .then((data) =>{ 
           // Istället för att logga, kalla på er funktion som lägger till annonser på sidan
           console.log(data);
+          getCardInfo()
       });
 });
 
