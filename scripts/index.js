@@ -42,8 +42,13 @@ function getAdsAndPrint() {
 function getCardInfo(result) {
   for (let i = 0; i < searchVariables.nyttAntal; i++) {
 
-    let lastApplyDate = result.matchningslista.matchningdata[i].sista_ansokningsdag;
-    let applyDateSplit = lastApplyDate.split("", 10);
+        let lastApplyHTML ="";
+        // console.log(element);
+        if (result.matchningslista.matchningdata[i].sista_ansokningsdag) {
+          let lastApplyDate = result.matchningslista.matchningdata[i].sista_ansokningsdag;
+          let applyDateSplit = lastApplyDate.split("", 10);
+        lastApplyHTML= `<p class="lastApply">innan ${applyDateSplit.join("")}</p>`
+       }
 
     let card = `<div class="cardContainer">
     <div class="cardBody">
@@ -54,8 +59,7 @@ function getCardInfo(result) {
       <p>Anställningstyp: ${result.matchningslista.matchningdata[i].anstallningstyp}<p>
     </div>
     <div class="buttonParent">
-     <a href="${result.matchningslista.matchningdata[i].annonsurl}"><button class="buttonInCard">Ansök här<br> <p class="lastApply">innan ${applyDateSplit.join("")}</p></button></a>
-    </div>
+    <a href="${result.matchningslista.matchningdata[i].annonsurl}"><button class="buttonInCard">Ansök här<br> ${lastApplyHTML} </button></a>    </div>
   </div>`
 
     getDOM.getCard.insertAdjacentHTML("beforeend", card);
