@@ -127,6 +127,8 @@ getAdsAndPrint();
 getDOM.valAntal.addEventListener('submit', antalAnnonser);
 getDOM.jobSearch.addEventListener('submit', handleSearch);
 
+
+
 // Hämtar annonser per yrkesområde
 function getAdsByField() {
   let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesomraden`;
