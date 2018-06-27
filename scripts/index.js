@@ -41,10 +41,14 @@ function getAdsAndPrint() {
 //Plockar ut valt antal annonser för visning
 function getCardInfo(result) {
   for (let i = 0; i < searchVariables.nyttAntal; i++) {
-
-    let lastApplyDate = result.matchningslista.matchningdata[i].sista_ansokningsdag;
-    let applyDateSplit = lastApplyDate.split("", 10);
-
+    let element = result.matchningslista.matchningdata[i];
+    let lastApplyHTML ="";
+    // console.log(element);
+    if (result.matchningslista.matchningdata[i].sista_ansokningsdag) {
+      let lastApplyDate = result.matchningslista.matchningdata[i].sista_ansokningsdag;
+      let applyDateSplit = lastApplyDate.split("", 10);
+      lastApplyHTML= `<p class="lastApply">innan ${applyDateSplit.join("")}</p>`
+    }
     let card = `<div class="cardContainer">
     <div class="cardBody">
       <h1 class="cardTitle">${result.matchningslista.matchningdata[i].annonsrubrik}</h1>
@@ -54,7 +58,7 @@ function getCardInfo(result) {
       <p>Anställningstyp: ${result.matchningslista.matchningdata[i].anstallningstyp}<p>
     </div>
     <div class="buttonParent">
-     <a href="${result.matchningslista.matchningdata[i].annonsurl}"><button class="buttonInCard">Ansök här<br> <p class="lastApply">innan ${applyDateSplit.join("")}</p></button></a>
+     <a href="${result.matchningslista.matchningdata[i].annonsurl}"><button class="buttonInCard">Ansök här<br> ${lastApplyHTML} </button></a>
     </div>
   </div>`
 
@@ -120,7 +124,6 @@ slct1.addEventListener('change', function () {
 });
 
 
-
 //RUN, RUN RUN YOUR CODE
 getAdsAndPrint();
 getDOM.valAntal.addEventListener('submit', antalAnnonser);
@@ -147,4 +150,6 @@ function getAdsByField() {
       }
     })
 }
+
 getAdsByField()
+
