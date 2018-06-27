@@ -1,15 +1,27 @@
+/* INNEHÅLL
+* Globala variabler
+* Funktioner
+* - startvyn
+* - Anpassningar
+* - Sökning
+* Koden körs
+*/ 
+
+//GLOBALA VARIABLER
+
 const forms = {
  valAntal: document.getElementById('valAntal'),
 jobSearch: document.getElementById('jobSearch'),
 }
 
-//UPPDATERA ALLA VARIABLER MED OBJEKTET OCH PUNKT
 let searchVariables = {
   nyttAntal: 10,
   keyword: "",
   lanid: 1,
   page: 1,
 }
+
+//FUNKTIONER
 
 //hämtar annonser från API
 function hamtaAnnonser() {
