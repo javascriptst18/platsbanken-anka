@@ -12,7 +12,11 @@
 const getDOM = {
  valAntal: document.getElementById('valAntal'),
   jobSearch: document.getElementById('jobSearch'),
-  getCard: document.querySelector("#card")
+  getCard: document.querySelector("#card"),
+  pageUpper: document.getElementById('pageUpper'),
+  pageLower: document.getElementById('pageBottom'),
+  pageChoiceUpper: document.getElementById('pageUpper'),
+  pageChoiceLower: document.getElementById('pageBottom')
 }
 
 let searchVariables = {
@@ -38,6 +42,7 @@ function getAdsAndPrint() {
       searchVariables.numberOfJobs = result.matchningslista.antal_platsannonser;
       searchVariables.lastPage = result.matchningslista.antal_sidor;
       console.log(searchVariables);
+      pageOptions();
     })
   }
   
@@ -149,8 +154,12 @@ function getAdsByField() {
 //Sidväljare för att se fler annonser
 
 //steg 1: generera sidnummer till view
-function getPageOptions() {
-  
+function pageOptions() {
+  for (let i=1; i<=searchVariables.lastPage;  i++){
+    let pNr = `<option value="${i}">${i}</option>`;
+    getDOM.pageChoiceLower.insertAdjacentHTML("beforeend", pNr);
+    getDOM.pageChoiceUpper.insertAdjacentHTML("beforeend", pNr);
+  }
 }
 
 //steg 2: funktionalitet bläddra framåt
