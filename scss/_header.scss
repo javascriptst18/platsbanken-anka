@@ -1,0 +1,33 @@
+
+header {
+    width: 95%;
+    height: 300px;
+    background-image: url("../images/happy-businessman.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 20px auto;
+    display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+  }
+
+  
+.mainTitle {
+    width: 100%;
+    display: flex;
+    display: block;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    padding-top: 20px;
+    // margin-top: 20px;
+  }
+  
+  .tagline {
+    margin-top: 20px;
+    padding-top: 20px;
+    margin-bottom: -10px;
+  }
