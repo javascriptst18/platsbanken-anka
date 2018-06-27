@@ -42,7 +42,7 @@ function getAdsAndPrint() {
 function getCardInfo(result) {
   for (let i = 0; i < searchVariables.nyttAntal; i++) {
     let element = result.matchningslista.matchningdata[i];
-    console.log(element);
+    // console.log(element);
 
     let lastApplyDate = result.matchningslista.matchningdata[i].sista_ansokningsdag;
     let applyDateSplit = lastApplyDate.split("", 10);
@@ -126,3 +126,23 @@ getAdsAndPrint();
 getDOM.valAntal.addEventListener('submit', antalAnnonser);
 getDOM.jobSearch.addEventListener('submit', handleSearch);
 
+// Hämtar annonser per yrkesområde
+function getAdsByField() {
+  let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesomraden`;
+  fetch(url)
+    .then(response => response.json())
+    .then(result => {
+      let fieldList = result.soklista.sokdata;
+      for (let i = 0; i < fieldList.length; i++) {
+        let element = fieldList[i];
+        console.log(element);
+    
+        let getLinks = document.querySelector("#fieldList");
+        let link = `<a href="${element.namn}"><button class="buttonField">${element.namn}</button></a>`;
+    
+        getLinks.insertAdjacentHTML("beforeend", link);
+      }
+      console.log(fieldList);
+    })
+}
+getAdsByField()
