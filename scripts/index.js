@@ -1,9 +1,20 @@
-const forms = {
+/* INNEHÅLL
+* Globala variabler
+* Funktioner
+* - startvyn
+* - Anpassningar
+* - Sökning
+* Koden körs
+*/ 
+
+//GLOBALA VARIABLER
+
+const getDOM = {
  valAntal: document.getElementById('valAntal'),
-jobSearch: document.getElementById('jobSearch'),
+  jobSearch: document.getElementById('jobSearch'),
+  getCard: document.querySelector("#card")
 }
 
-//UPPDATERA ALLA VARIABLER MED OBJEKTET OCH PUNKT
 let searchVariables = {
   nyttAntal: 10,
   keyword: "",
@@ -11,9 +22,12 @@ let searchVariables = {
   page: 1,
 }
 
+//FUNKTIONER
+
 //hämtar annonser från API
 function getAdsAndPrint() {
   let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${searchVariables.lanid}&nyckelord=${searchVariables.keyword}&sida=${searchVariables.page}&antalrader=${searchVariables.nyttAntal}`;
+  getDOM.getCard.innerHTML = "";
   fetch(url)
     .then(response => response.json())
     .then(result => {
@@ -33,9 +47,7 @@ function getCardInfo(result) {
     let lastApplyDate = result.matchningslista.matchningdata[i].sista_ansokningsdag;
     let applyDateSplit = lastApplyDate.split("", 10);
 
-    let getCard = document.querySelector("#card");
     let card = `<div class="cardContainer">
-
     <div class="cardBody">
       <h1 class="cardTitle">${result.matchningslista.matchningdata[i].annonsrubrik}</h1>
       <h2>${result.matchningslista.matchningdata[i].arbetsplatsnamn}</h2>
@@ -47,7 +59,8 @@ function getCardInfo(result) {
      <a href="${result.matchningslista.matchningdata[i].annonsurl}"><button class="buttonInCard">Ansök här<br> <p class="lastApply">innan ${applyDateSplit.join("")}</p></button></a>
     </div>
   </div>`
-    getCard.insertAdjacentHTML("beforeend", card);
+
+    getDOM.getCard.insertAdjacentHTML("beforeend", card);
   }
 }
 
@@ -67,13 +80,51 @@ function handleSearch(event) {
   getAdsAndPrint();
 }
 
+// Populate lägger till en ny <option> för varje län som finns på arbetsförmedlingen
+function populate(listOfLan) {
+  let s1 = document.getElementById("slct1");
+  // För varje län i listan av län, sätt en variabel med det nuvarande länet
+  for(let currentLan of listOfLan) {
+      // Skapa ett nytt option för varje län
+      let nyLan = document.createElement("option");
+      // Sätt värdet på option till id som vi får från arbetsförmedlingen
+      nyLan.value = currentLan.id;
+      // Och sätt texten på option till namnet på länet
+      nyLan.innerText = currentLan.namn;
+      // Vi måste också lägga till option till HTMLen innan vi fortsätter
+      s1.appendChild(nyLan);
+  }
+}
+// Hämtar data från arbetsförmedlingen och kallar på populate
+function fetchLan(){
+  let url = (`http://api.arbetsformedlingen.se/af/v0/arbetsformedling/soklista/lan`)
+  fetch(url)
+  .then((res) => res.json())
+  .then((listOfLan) =>{
+      populate(listOfLan.soklista.sokdata);
+      console.log(listOfLan);
+  });
+}
+
+fetchLan();
+
+// Aktiveras bara när vi ändrar i dropdown
+slct1.addEventListener('change', function(){
+  let selectedValue = slct1.value;
+  fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
+      .then((res) => res.json())
+      .then((data) =>{ 
+          // Istället för att logga, kalla på er funktion som lägger till annonser på sidan
+          console.log(data);
+      });
+});
+
+
+
 //RUN, RUN RUN YOUR CODE
 getAdsAndPrint();
-forms.valAntal.addEventListener('submit', antalAnnonser);
-forms.jobSearch.addEventListener('submit', handleSearch);
-
-
-
+getDOM.valAntal.addEventListener('submit', antalAnnonser);
+getDOM.jobSearch.addEventListener('submit', handleSearch);
 
 // Hämtar annonser per yrkesområde
 function getAdsByField() {
