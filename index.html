@@ -56,13 +56,20 @@
  <!--div som fylls med JS-genererade kort med jobbannonser-->
     <div id="card"></div>
     
- <!--formulär som fylls med JS-genererade sidval-->
-    <form action="" id="choosePage">
+ <!--formulär som fylls med JS-genererade sidval, samt blädderknappar-->
+    <form action="" class="choosePage" id="choosePage">
+      <button id="backBtn"> < Föregående sida </button>
+
       <label for="pageSelect">sida</label>
       <select name="pageSelect" id="pageSelect"></select>
-      <input type="submit" value="Gå till sida" class="gotoButton">
-    </form>
 
+      <input type="submit" value="Gå till sida"  class="gotoButton">
+      
+      <button id="forwardBtn">Nästa sida ></button>
+
+
+    </form>
+    
   </div>
 
   <script src="scripts/index.js"></script>
