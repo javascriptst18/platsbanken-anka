@@ -141,7 +141,7 @@ function getAdsByField() {
         newField.innerText = currentField.namn;
 
         getLinks.appendChild(newField);
-        getCardInfo(result);
+       
       }
     })
 }
