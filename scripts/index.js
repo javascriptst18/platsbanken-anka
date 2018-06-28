@@ -80,6 +80,7 @@ function handleSearch(event) {
   const searchForm = event.target;
   searchVariables.keyword = searchForm.keyword.value;
   getAdsAndPrint();
+  keyword.value = "";
 }
 
 // Populate lägger till en ny <option> för varje län som finns på arbetsförmedlingen
