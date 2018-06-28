@@ -13,8 +13,8 @@ const getDOM = {
   nOfAdsForm: document.getElementById('nOfAds'),
   jobSearch: document.getElementById('jobSearch'),
   getCard: document.querySelector("#card"),
-  pageUpper: document.getElementById('pageUpper'),
-  pageChoiceUpper: document.getElementById('pageChoiceUpper')
+  choosePage: document.getElementById('choosePage'),
+  pageSelect: document.getElementById('pageSelect')
 }
 
 let searchVariables = {
@@ -114,34 +114,6 @@ function fetchLan() {
     });
 }
 
-fetchLan();
-
-//Generera val av sidnummer
-function pageNumber() {
-  for (i=1; i <=searchVariables.lastPage ; i++)
-    getDOM.pageChoiceUpper.insertAdjacentHTML("beforeend", `<option value="${i}">${i}</option>`);
-}
-
-//Navigera till rätt sida
-function navToPage(event) {
-  event.preventDefault();
-  searchVariables.page = event.target.pageChoiceUpper.value;
-  getAdsAndPrint();
-}
-
-//RUN, RUN RUN YOUR CODE
-getAdsAndPrint();
-
-//EVENT LISTENERS
-
-//Antal annonser
-getDOM.nOfAdsForm.addEventListener('submit', antalAnnonser);
-//Fritextsök
-getDOM.jobSearch.addEventListener('submit', handleSearch);
-//Navigera till olika sidor
-getDOM.pageUpper.addEventListener('submit', navToPage);
-
-
 // Hämtar annonser per yrkesområde och lägger in de i dropdown i headern.
 function getAdsByField() {
   let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesomraden`;
@@ -162,4 +134,29 @@ function getAdsByField() {
     })
 }
 
+//Generera val av sidnummer
+function pageNumber() {
+  for (i=1; i <=searchVariables.lastPage ; i++)
+    getDOM.pageSelect.insertAdjacentHTML("beforeend", `<option value="${i}">${i}</option>`);
+}
+
+//Navigera till rätt sida
+function navToPage(event) {
+  event.preventDefault();
+  searchVariables.page = event.target.pageChoiceUpper.value;
+  getAdsAndPrint();
+}
+
+//RUN, RUN RUN YOUR CODE
+getAdsAndPrint();
+fetchLan();
 getAdsByField();
+
+//EVENT LISTENERS
+
+//Antal annonser
+getDOM.nOfAdsForm.addEventListener('submit', displayNOfAds);
+//Fritextsök
+getDOM.jobSearch.addEventListener('submit', handleSearch);
+//Navigera till olika sidor
+getDOM.choosePage.addEventListener('submit', navToPage);
