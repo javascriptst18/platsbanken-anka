@@ -180,7 +180,7 @@ function getAdsByField() {
 //Generera val av sidnummer
 function pageNumber() {
 
-  for (i = 1; i <= searchVariables.lastPage; i++)
+  for (i = 1; i <= searchVariables.lastPage; i++) {
 
     getDOM.pageSelect.insertAdjacentHTML("beforeend", `<option value="${i}">${i}</option>`);
   }
