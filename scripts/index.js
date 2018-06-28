@@ -45,7 +45,7 @@ function getAdsAndPrint() {
 //DOM-manipulation för att lägga in all info i korten
 //Plockar ut valt antal annonser för visning
 function getCardInfo(result) {
-  for (let i = 0; i < searchVariables.nyttAntal; i++) {
+  for (let i = 0; i < searchVariables.newNumber; i++) {
 
         let lastApplyHTML ="";
         // console.log(element);
@@ -155,7 +155,7 @@ function pageNumber() {
 //Navigera till rätt sida
 function navToPage(event) {
   event.preventDefault();
-  searchVariables.page = event.target.pageChoiceUpper.value;
+  searchVariables.page = event.target.pageSelect.value;
   getAdsAndPrint();
 }
 
