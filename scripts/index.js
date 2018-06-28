@@ -85,6 +85,7 @@ function handleSearch(event) {
   const searchForm = event.target;
   searchVariables.keyword = searchForm.keyword.value; //lägger in formulärvärde i global variabel
   getAdsAndPrint();
+  keyword.value = "";
 }
 
 // Populate lägger till en ny <option> för varje län som finns på arbetsförmedlingen
@@ -116,7 +117,8 @@ function fetchLan() {
 
 // Aktiveras bara när vi ändrar i dropdown, när vi trycker på specifikt län dras kortet för det länet ut. 
 slct1.addEventListener('change', function() {
-  let selectedValue = slct1.value;
+  // Nedan använder jag "this" funktionen som ersätter "slct1"
+  let selectedValue = this.value;
       fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
           .then((res) => res.json())
           .then((data) =>{ 
