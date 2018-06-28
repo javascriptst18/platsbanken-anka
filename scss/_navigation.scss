@@ -22,7 +22,9 @@ nav {
   font-weight: 700;
 }
 
-select {
+select, 
+button,
+.choosePage input {
   margin: 10px;
   background: rgba(0, 0, 0, 0.6);
   border: none;
@@ -63,4 +65,14 @@ select {
   font-size: 14px;
   border-radius: 5px;
   color: black;
+}
+
+
+.choosePage {
+  label {
+    display: none;
+  }
+  input {
+    margin-left: -.5rem;
+  }
 }
