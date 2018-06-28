@@ -1,7 +1,17 @@
+.navigationMenu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 95%;
+  max-width: 95%;
+  margin: auto;
+}
 
 nav {
   padding: 10px;
   display: flex;
+  flex-direction: column wrap;
+  justify-content: space-around;
 }
 
 .navLink {
@@ -10,4 +20,47 @@ nav {
   border-radius: 3px;
   color: black;
   font-weight: 700;
+}
+
+select {
+  margin: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  font-size: 14px;
+  height: 29px;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+#jobSearch {
+  margin: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  font-size: 14px;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+}
+
+#keyword {
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  font-size: 14px;
+  border-radius: 5px;
+  color: black;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-left: 5px;
+}
+
+#searchButton {
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  font-size: 14px;
+  border-radius: 5px;
+  color: black;
 }
