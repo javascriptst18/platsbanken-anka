@@ -59,7 +59,7 @@ function getCardInfo(result) {
       <p>Anställningstyp: ${result.matchningslista.matchningdata[i].anstallningstyp}<p>
     </div>
     <div class="buttonParent">
-    <a href="${result.matchningslista.matchningdata[i].annonsurl}"><button class="buttonInCard">Ansök här<br> ${lastApplyHTML} </button></a>    </div>
+    <a href="${result.matchningslista.matchningdata[i].annonsurl}" class="hvr-float-shadow"><button class="buttonInCard">Ansök här<br> ${lastApplyHTML}</button></a>    </div>
   </div>`
 
     getDOM.getCard.insertAdjacentHTML("beforeend", card);

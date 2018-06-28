@@ -25,18 +25,17 @@
 
       <div class="navigationMenu">
         <nav>
-          <div class="navDropdowns">
-         <select class="selectLan" id="slct1" name="slct1"></select>
-         <select class="selectField" id="category" name="category"></select>
-        </div>
+          <!-- <div class="navDropdowns"> -->
+            <select class="selectLan" id="slct1" name="slct1"></select>
+            <select class="selectField" id="category" name="category"></select>
+          <!-- </div> -->
           <form action="" id="jobSearch">
-              <label for="keyword">Sök jobb</label>
-              <input type="search" name="keyword" id="keyword" placeholder="Din sökning">
-              <input type="submit" value="Sök">
-            </form>
+            <input type="search" name="keyword" id="keyword" placeholder="Sök jobb">
+            <input type="submit" value="Sök" id="searchButton">
+          </form>
         </nav>
       </div>
-    
+
     </header>
 
 
@@ -44,14 +43,14 @@
     <div id="card"></div>
 
     <form action="" id="valAntal">
-        <label for="antalAnnonser">Antal annonser</label>
-        <select name="antal" id="antal">
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-        </select>
-        <input type="submit" value="Välj">
-      </form>
+      <label for="antalAnnonser">Antal annonser</label>
+      <select name="antal" id="antal">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+      </select>
+      <input type="submit" value="Välj">
+    </form>
 
   </div>
 
