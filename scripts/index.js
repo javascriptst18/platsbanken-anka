@@ -150,9 +150,9 @@ slct1.addEventListener('change', function () {
           .then((res) => res.json())
           .then((data) =>{ 
             jobs.innerHTML = '<h5>Job applications available: ' + data.matchningslista.antal_platsannonser + '</h5>'; 
-            let clearCard = document.getElementById("card");
+/*             let clearCard = document.getElementById("card");
             clearCard.innerHTML = "";
-            getCardInfo(data);
+ */            getCardInfo(data);
           
       });
 
