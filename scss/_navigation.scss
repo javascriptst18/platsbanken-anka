@@ -28,6 +28,7 @@ select {
   border: none;
   font-size: 14px;
   height: 29px;
+  min-height: 28px;
   padding: 5px;
   border-radius: 5px;
   color: white;
@@ -46,6 +47,7 @@ select {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
+  min-height: 20px;
 }
 
 #keyword {
@@ -73,5 +75,12 @@ select {
 @media (max-width: 760px) {
   nav {
     flex-direction: column;
+    max-width: 300px;
+  }
+  #jobSearch {
+    margin: 0;
+  }
+  select {
+    margin: 3px;
   }
 }
