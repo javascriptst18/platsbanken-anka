@@ -1,7 +1,17 @@
+.navigationMenu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 95%;
+  max-width: 95%;
+  margin: auto;
+}
 
 nav {
   padding: 10px;
   display: flex;
+  flex-direction: column wrap;
+  justify-content: space-around;
 }
 
 .navLink {
@@ -12,10 +22,76 @@ nav {
   font-weight: 700;
 }
 
-select {
-margin: 10px;
+select, 
+button,
+.choosePage input {
+  margin: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  font-size: 14px;
+  height: 29px;
+  min-height: 28px;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
 }
 
 #jobSearch {
   margin: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  font-size: 14px;
+padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  min-height: 20px;
+}
+
+#keyword {
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  font-size: 14px;
+  border-radius: 5px;
+  color: black;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-left: 5px;
+}
+
+#searchButton {
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  font-size: 14px;
+  border-radius: 5px;
+  color: black;
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
+  flex: 1;
+}
+
+.choosePage {
+  label {
+    display: none;
+  }
+  input {
+    margin-left: -.5rem;
+
+
+@media (max-width: 760px) {
+  nav {
+    flex-direction: column;
+    max-width: 300px;
+  }
+  #jobSearch {
+    margin: 0;
+    font-size: 16px;
+    min-height: 35px;
+  }
+  select {
+    margin: 3px;
+    height: 30px;
+  }
 }
