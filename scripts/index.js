@@ -184,7 +184,6 @@ function pageNumber() {
 
     getDOM.pageSelect.insertAdjacentHTML("beforeend", `<option value="${i}">${i}</option>`);
   }
-}
 
 //Navigera till rätt sida
 function navToPage(event) {

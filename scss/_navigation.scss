@@ -22,8 +22,7 @@ nav {
   font-weight: 700;
 }
 
-select, 
-button,
+select,
 .choosePage input {
   margin: 10px;
   background: rgba(0, 0, 0, 0.6);
@@ -36,12 +35,16 @@ button,
   color: white;
 }
 
+button {
+  border-radius: 50%;
+}
+
 #jobSearch {
   margin: 10px;
   background: rgba(0, 0, 0, 0.6);
   border: none;
   font-size: 14px;
-padding: 5px;
+  padding: 5px;
   border-radius: 5px;
   display: flex;
   flex-wrap: nowrap;
@@ -72,13 +75,15 @@ padding: 5px;
   flex: 1;
 }
 
+label {
+  display: none;
+}
+
 .choosePage {
-  label {
-    display: none;
-  }
   input {
     margin-left: -.5rem;
-
+  }
+}
 
 @media (max-width: 760px) {
   nav {
