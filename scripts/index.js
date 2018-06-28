@@ -23,6 +23,8 @@ let searchVariables = {
   keyword: "",
   lanid: 1,
   page: 1,
+  lastPage: 0,
+  numberOfJobs: 0,
 }
 
 //FUNKTIONER
@@ -47,14 +49,14 @@ function getAdsAndPrint() {
 function getCardInfo(result) {
   for (let i = 0; i < searchVariables.newNumber; i++) {
 
-        let lastApplyHTML ="";
-        // console.log(element);
+        let lastApplyHTML =""; //tar bort kort från tidigare sökning
+        // if-sats för att formatera sista datum där sådant finns
         if (result.matchningslista.matchningdata[i].sista_ansokningsdag) {
           let lastApplyDate = result.matchningslista.matchningdata[i].sista_ansokningsdag;
           let applyDateSplit = lastApplyDate.split("", 10);
         lastApplyHTML= `<p class="lastApply">innan ${applyDateSplit.join("")}</p>`
        }
-
+       //skapar kort till html
       let card = `<div class="cardContainer">
         <div class="cardBody">
           <h1 class="cardTitle">${result.matchningslista.matchningdata[i].annonsrubrik}</h1>
@@ -66,7 +68,7 @@ function getCardInfo(result) {
         <div class="buttonParent">
           <a href="${result.matchningslista.matchningdata[i].annonsurl}" class="hvr-float-shadow"><button class="buttonInCard">Ansök här<br> ${lastApplyHTML}</button></a>    </div>
         </div>`
-
+    //Sätter in kort i HTML
     getDOM.getCard.insertAdjacentHTML("beforeend", card);
   }
 }
