@@ -151,3 +151,15 @@ function getAdsByField() {
     })
 }
 getAdsByField()
+
+// Event listener för dropdown för yrkesområden
+category.addEventListener('change', function() {
+  let selectedValue = category.value;
+      fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?yrkesomradeid=${selectedValue}`)
+          .then((res) => res.json())
+          .then((data) =>{ 
+              let clearCard = document.getElementById("card");
+              clearCard.innerHTML = "";
+              getCardInfo(data);
+      });
+  });
