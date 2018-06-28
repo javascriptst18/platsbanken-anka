@@ -10,7 +10,7 @@
 //GLOBALA VARIABLER
 
 const getDOM = {
-  valAntal: document.getElementById('valAntal'),
+  nOfAdsForm: document.getElementById('nOfAds'),
   jobSearch: document.getElementById('jobSearch'),
   getCard: document.querySelector("#card"),
   pageUpper: document.getElementById('pageUpper'),
@@ -18,7 +18,7 @@ const getDOM = {
 }
 
 let searchVariables = {
-  nyttAntal: 10,
+  newNumber: 10,
   keyword: "",
   lanid: 1,
   page: 1,
@@ -28,7 +28,7 @@ let searchVariables = {
 
 //hämtar annonser från API
 function getAdsAndPrint() {
-  let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${searchVariables.lanid}&nyckelord=${searchVariables.keyword}&sida=${searchVariables.page}&antalrader=${searchVariables.nyttAntal}`;
+  let url = `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${searchVariables.lanid}&nyckelord=${searchVariables.keyword}&sida=${searchVariables.page}&antalrader=${searchVariables.newNumber}`;
   getDOM.getCard.innerHTML = "";
   fetch(url)
     .then(response => response.json())
@@ -72,10 +72,10 @@ function getCardInfo(result) {
 }
 
 //Väljer antal annonser som visas
-function antalAnnonser(event) {
+function displayNOfAds(event) {
   event.preventDefault();
   const form = event.target;
-  searchVariables.nyttAntal = form.antal.value;
+  searchVariables.newNumber = form.number.value;
   getAdsAndPrint();
 }
 
@@ -135,7 +135,7 @@ getAdsAndPrint();
 //EVENT LISTENERS
 
 //Antal annonser
-getDOM.valAntal.addEventListener('submit', antalAnnonser);
+getDOM.nOfAdsForm.addEventListener('submit', antalAnnonser);
 //Fritextsök
 getDOM.jobSearch.addEventListener('submit', handleSearch);
 //Navigera till olika sidor
