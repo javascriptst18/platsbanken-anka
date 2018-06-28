@@ -25,14 +25,14 @@
 
       <div class="navigationMenu">
         <nav>
-          <div class="navDropdowns">
+          <!--<div class="navDropdowns">-->
          <select class="selectLan" id="slct1" name="slct1"></select>
          <select class="selectField" id="category" name="category"></select>
-        </div>
+        <!--</div>-->
           <form action="" id="jobSearch">
               <label for="keyword">Sök jobb</label>
-              <input type="search" name="keyword" id="keyword" placeholder="Din sökning">
-              <input type="submit" value="Sök">
+              <input type="search" name="keyword" id="keyword" placeholder="Sök jobb">
+              <input type="submit" value="Sök" id="searchButton">
             </form>
         </nav>
       </div>
@@ -41,20 +41,37 @@
 
     <div class="numberOfJobs" id="jobs" name = "jobs"></div>
     <div id="fieldList"></div>
+
+ <!--formulär som väljer hur många jobbannonser som visas på varje sida-->
+    <form action="" id="nOfAds">
+      <label for="number">Antal annonser</label>
+      <select name="number" id="number">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+      </select>
+      <input type="submit" value="Välj" class="gotoButton">
+   </form>
+
+ <!--div som fylls med JS-genererade kort med jobbannonser-->
     <div id="card"></div>
+    
+ <!--formulär som fylls med JS-genererade sidval, samt blädderknappar-->
+    <form action="" class="choosePage" id="choosePage">
+      <button id="backBtn"> < Föregående sida </button>
 
-    <form action="" id="valAntal">
-        <label for="antalAnnonser">Antal annonser</label>
-        <select name="antal" id="antal">
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-        </select>
-        <input type="submit" value="Välj">
-      </form>
+      <label for="pageSelect">sida</label>
+      <select name="pageSelect" id="pageSelect"></select>
 
+      <input type="submit" value="Gå till sida"  class="gotoButton">
+      
+      <button id="forwardBtn">Nästa sida ></button>
+
+
+    </form>
+    
   </div>
-
+<script src="scripts/jquery-3.3.1.min.js"></script>
   <script src="scripts/index.js"></script>
 </body>
 
