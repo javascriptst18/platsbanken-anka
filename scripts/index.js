@@ -55,7 +55,7 @@ function getCardInfo(result) {
       let applyDateSplit = lastApplyDate.split("", 10);
       lastApplyHTML = `<p class="lastApply">senast ${applyDateSplit.join("")}</p>`
     }
-    readAddText(result.matchningslista.matchningdata[i].annonsid);
+    // readAddText(result.matchningslista.matchningdata[i].annonsid);
     let card = `<div class="cardContainer">
         <div class="cardBody" id="${result.matchningslista.matchningdata[i].annonsid}">
           <h1 class="cardTitle">${result.matchningslista.matchningdata[i].annonsrubrik}</h1>
@@ -73,20 +73,24 @@ function getCardInfo(result) {
   }
 }
 
-//Hämstar annonstext
-function readAddText(id) {
-  let url = (`http://api.arbetsformedlingen.se/af/v0/platsannonser/${id}`);
-  fetch(url)
-  .then(response => response.json())
-  .then(result => {
-    console.log(result);
-    let readMoreAbout = document.getElementById(id);
-    let readAdd = `<p>${result.platsannons.annons.annonstext}</p>`;
-    // console.log(readAdd);
-    readMoreAbout.insertAdjacentHTML("beforeend", readAdd);
-    //Kör json show och hide
-})
-}
+// //Hämstar annonstext
+// function readAddText(id) {
+//   let url = (`http://api.arbetsformedlingen.se/af/v0/platsannonser/${id}`);
+//   fetch(url)
+//   .then(response => response.json())
+//   .then(result => {
+//     console.log(result);
+//     let readMoreAbout = document.getElementById(id);
+//     let readAdd = `<p id="adText">${result.platsannons.annons.annonstext}</p>`;
+//     // console.log(readAdd);
+//     readMoreAbout.insertAdjacentHTML("beforeend", readAdd);
+//     //Kör json show och hide
+// })
+// }
+
+// $("#readMore").click(function(){
+//   $("#adText").toggle();
+// }); 
 
 //Väljer antal annonser som visas
 function displayNOfAds(event) {
