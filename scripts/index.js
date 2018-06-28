@@ -25,6 +25,8 @@ let searchVariables = {
   keyword: "",
   lanid: 1,
   page: 1,
+  lastPage: 0,
+  numberOfJobs: 0,
 }
 
 //FUNKTIONER
@@ -37,6 +39,7 @@ function getAdsAndPrint() {
     .then(response => response.json())
     .then(result => {
       //Visar antal jobb
+      console.log(result);
       searchVariables.numberOfJobs = result.matchningslista.antal_platsannonser;
       searchVariables.lastPage =  result.matchningslista.antal_sidor;
       jobs.innerHTML = '<h5>Lediga tjänster i länet: ' + searchVariables.numberOfJobs + '</h5>';
@@ -52,13 +55,14 @@ function getAdsAndPrint() {
 function getCardInfo(result) {
   for (let i = 0; i < searchVariables.newNumber; i++) {
 
-    let lastApplyHTML = "";
-    console.log(result);
-    if (result.matchningslista.matchningdata[i].sista_ansokningsdag) {
-      let lastApplyDate = result.matchningslista.matchningdata[i].sista_ansokningsdag;
-      let applyDateSplit = lastApplyDate.split("", 10);
-      lastApplyHTML = `<p class="lastApply">senast ${applyDateSplit.join("")}</p>`
-    }
+
+        let lastApplyHTML =""; //tar bort kort från tidigare sökning
+        // if-sats för att formatera sista datum där sådant finns
+        if (result.matchningslista.matchningdata[i].sista_ansokningsdag) {
+          let lastApplyDate = result.matchningslista.matchningdata[i].sista_ansokningsdag;
+          let applyDateSplit = lastApplyDate.split("", 10);
+        lastApplyHTML= `<p class="lastApply">innan ${applyDateSplit.join("")}</p>`
+       }
     // readAddText(result.matchningslista.matchningdata[i].annonsid);
     let card = `<div class="cardContainer">
         <div class="cardBody" id="${result.matchningslista.matchningdata[i].annonsid}">
@@ -72,7 +76,7 @@ function getCardInfo(result) {
         <div class="buttonParent">
           <a href="${result.matchningslista.matchningdata[i].annonsurl}" class="hvr-float-shadow"><button class="buttonInCard">Ansök här<br> ${lastApplyHTML}</button></a>    </div>
         </div>`
-
+    //Sätter in kort i HTML
     getDOM.getCard.insertAdjacentHTML("beforeend", card);
   }
 }
@@ -145,19 +149,9 @@ function fetchLan() {
 // Aktiveras bara när vi ändrar i dropdown, när vi trycker på specifikt län dras kortet för det länet ut. 
 slct1.addEventListener('change', function () {
   // Nedan använder jag "this" funktionen som ersätter "slct1"
-  let selectedValue = this.value;
-      fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
-          .then((res) => res.json())
-          .then((data) =>{ 
-            jobs.innerHTML = '<h5>Job applications available: ' + data.matchningslista.antal_platsannonser + '</h5>'; 
-            let clearCard = document.getElementById("card");
-            clearCard.innerHTML = "";
-            getCardInfo(data);
-          
-      });
-
-  });
-
+  searchVariables.lanid = this.value;
+   getAdsAndPrint();
+ });
 
 // Hämtar annonser per yrkesområde och lägger in de i dropdown i headern.
 function getAdsByField() {
@@ -180,12 +174,6 @@ function getAdsByField() {
 }
 
 
-// getDOM.readMoreButton.addEventListener("click", function () {
-//   getAdInformation();
-// ta den variabeln som står för texten, eller metoden, eller vad det blir, och kör .show .hide.
-// })
-
-
 
 //Generera val av sidnummer
 function pageNumber() {
@@ -194,6 +182,7 @@ function pageNumber() {
 
     getDOM.pageSelect.insertAdjacentHTML("beforeend", `<option value="${i}">${i}</option>`);
   }
+}
 
 //Navigera till rätt sida
 function navToPage(event) {
