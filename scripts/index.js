@@ -15,7 +15,8 @@ const getDOM = {
   jobSearch: document.getElementById('jobSearch'),
   getCard: document.querySelector("#card"),
   choosePage: document.getElementById('choosePage'),
-  pageSelect: document.getElementById('pageSelect')
+  pageSelect: document.getElementById('pageSelect'),
+  jobs: document.getElementById('#jobs')
 }
 
 let searchVariables = {
@@ -37,10 +38,14 @@ function getAdsAndPrint() {
       //Visar antal jobb
       searchVariables.numberOfJobs = result.matchningslista.antal_platsannonser;
       searchVariables.lastPage =  result.matchningslista.antal_sidor;
+      jobs.innerHTML = '<h5>Job applications available: ' + searchVariables.numberOfJobs + '</h5>';
+ 
       pageNumber();
       getCardInfo(result);
     })
+
 }
+
 
 //DOM-manipulation för att lägga in all info i korten
 //Plockar ut valt antal annonser för visning
@@ -122,9 +127,10 @@ slct1.addEventListener('change', function() {
       fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
           .then((res) => res.json())
           .then((data) =>{ 
-              let clearCard = document.getElementById("card");
-              clearCard.innerHTML = "";
-              getCardInfo(data);
+            jobs.innerHTML = '<h5>Job applications available: ' + data.matchningslista.antal_platsannonser + '</h5>'; 
+            let clearCard = document.getElementById("card");
+            clearCard.innerHTML = "";
+            getCardInfo(data);
       });
   });
 
@@ -135,7 +141,8 @@ function getAdsByField() {
     .then(response => response.json())
     .then(result => {
       let fieldList = result.soklista.sokdata;
-      console.log(result);
+      let jobQuantity = document.getElementById("jobs");
+      jobs.innerHTML = '<h5>Job applications available: ' + result.soklista.totalt_antal_ledigajobb + '</h5>';
       let getLinks = document.querySelector("#category");
       for (let currentField of fieldList) {
         let newField = document.createElement("option");
