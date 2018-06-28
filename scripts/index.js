@@ -16,6 +16,7 @@ const getDOM = {
   getCard: document.querySelector("#card"),
   choosePage: document.getElementById('choosePage'),
   pageSelect: document.getElementById('pageSelect'),
+  jobs: document.getElementById('#jobs'),
   readMoreButton: document.getElementById("readMore")
 }
 
@@ -37,11 +38,14 @@ function getAdsAndPrint() {
     .then(result => {
       //Visar antal jobb
       searchVariables.numberOfJobs = result.matchningslista.antal_platsannonser;
-      searchVariables.lastPage = result.matchningslista.antal_sidor;
+      searchVariables.lastPage =  result.matchningslista.antal_sidor;
+      jobs.innerHTML = '<h5>Lediga tjänster i länet: ' + searchVariables.numberOfJobs + '</h5>';
       pageNumber();
       getCardInfo(result);
     })
+
 }
+
 
 //DOM-manipulation för att lägga in all info i korten
 //Plockar ut valt antal annonser för visning
@@ -123,6 +127,7 @@ function populate(listOfLan) {
     // Vi måste också lägga till option till HTMLen innan vi fortsätter
     s1.appendChild(nyLan);
   }
+  s1.value = searchVariables.lanid;
 }
 
 // Hämtar data från arbetsförmedlingen och kallar på populate
@@ -133,6 +138,7 @@ function fetchLan() {
     .then((listOfLan) => {
       populate(listOfLan.soklista.sokdata);
       console.log(listOfLan);
+    
     });
 }
 
@@ -140,14 +146,18 @@ function fetchLan() {
 slct1.addEventListener('change', function () {
   // Nedan använder jag "this" funktionen som ersätter "slct1"
   let selectedValue = this.value;
-  fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
-    .then((res) => res.json())
-    .then((data) => {
-      let clearCard = document.getElementById("card");
-      clearCard.innerHTML = "";
-      getCardInfo(data);
-    });
-});
+      fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
+          .then((res) => res.json())
+          .then((data) =>{ 
+            jobs.innerHTML = '<h5>Job applications available: ' + data.matchningslista.antal_platsannonser + '</h5>'; 
+            let clearCard = document.getElementById("card");
+            clearCard.innerHTML = "";
+            getCardInfo(data);
+          
+      });
+
+  });
+
 
 // Hämtar annonser per yrkesområde och lägger in de i dropdown i headern.
 function getAdsByField() {
@@ -156,7 +166,8 @@ function getAdsByField() {
     .then(response => response.json())
     .then(result => {
       let fieldList = result.soklista.sokdata;
-      console.log(result);
+      let jobQuantity = document.getElementById("jobs");
+      jobs.innerHTML = '<h5>Job applications available: ' + result.soklista.totalt_antal_ledigajobb + '</h5>';
       let getLinks = document.querySelector("#category");
       for (let currentField of fieldList) {
         let newField = document.createElement("option");
@@ -164,7 +175,6 @@ function getAdsByField() {
         newField.innerText = currentField.namn;
 
         getLinks.appendChild(newField);
-
       }
     })
 }
@@ -192,6 +202,7 @@ function navToPage(event) {
   getAdsAndPrint();
 }
 
+
 //Funktioner till knappar för att bläddra sida
 //Bläddra framåt
 function pageForward() {
@@ -206,7 +217,6 @@ function pageBack() {
   searchVariables.page -= 1;
   pageSelect.value = searchVariables.page; 
   getAdsAndPrint();
-
 }
 
 //RUN, RUN RUN YOUR CODE
