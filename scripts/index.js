@@ -107,6 +107,7 @@ function populate(listOfLan) {
     // Vi måste också lägga till option till HTMLen innan vi fortsätter
     s1.appendChild(nyLan);
   }
+  s1.value = searchVariables.lanid;
 }
 
 // Hämtar data från arbetsförmedlingen och kallar på populate
@@ -117,6 +118,7 @@ function fetchLan() {
     .then((listOfLan) => {
       populate(listOfLan.soklista.sokdata);
       console.log(listOfLan);
+    
     });
 }
 
@@ -131,7 +133,9 @@ slct1.addEventListener('change', function() {
             let clearCard = document.getElementById("card");
             clearCard.innerHTML = "";
             getCardInfo(data);
+          
       });
+
   });
 
 // Hämtar annonser per yrkesområde och lägger in de i dropdown i headern.
