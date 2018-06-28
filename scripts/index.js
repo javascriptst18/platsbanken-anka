@@ -39,6 +39,7 @@ function getAdsAndPrint() {
     .then(response => response.json())
     .then(result => {
       //Visar antal jobb
+      console.log(result);
       searchVariables.numberOfJobs = result.matchningslista.antal_platsannonser;
       searchVariables.lastPage =  result.matchningslista.antal_sidor;
       jobs.innerHTML = '<h5>Lediga tjänster i länet: ' + searchVariables.numberOfJobs + '</h5>';
@@ -148,19 +149,9 @@ function fetchLan() {
 // Aktiveras bara när vi ändrar i dropdown, när vi trycker på specifikt län dras kortet för det länet ut. 
 slct1.addEventListener('change', function () {
   // Nedan använder jag "this" funktionen som ersätter "slct1"
-  let selectedValue = this.value;
-      fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
-          .then((res) => res.json())
-          .then((data) =>{ 
-            jobs.innerHTML = '<h5>Job applications available: ' + data.matchningslista.antal_platsannonser + '</h5>'; 
-            let clearCard = document.getElementById("card");
-            clearCard.innerHTML = "";
-            getCardInfo(data);
-          
-      });
-
-  });
-
+  searchVariables.lanid = this.value;
+   getAdsAndPrint();
+ });
 
 // Hämtar annonser per yrkesområde och lägger in de i dropdown i headern.
 function getAdsByField() {
