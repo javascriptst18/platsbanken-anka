@@ -179,8 +179,11 @@ function getAdsByField() {
 
 //Generera val av sidnummer
 function pageNumber() {
+
   for (i = 1; i <= searchVariables.lastPage; i++)
+
     getDOM.pageSelect.insertAdjacentHTML("beforeend", `<option value="${i}">${i}</option>`);
+  }
 }
 
 //Navigera till rätt sida
@@ -188,6 +191,23 @@ function navToPage(event) {
   event.preventDefault();
   searchVariables.page = event.target.pageSelect.value;
   getAdsAndPrint();
+}
+
+//Funktioner till knappar för att bläddra sida
+//Bläddra framåt
+function pageForward() {
+  event.preventDefault();
+  searchVariables.page += 1;
+  pageSelect.value = searchVariables.page; //byter sidnummer i dropdown på bläddring
+  getAdsAndPrint();
+}
+//Bläddra bakåt
+function pageBack() {
+  event.preventDefault();
+  searchVariables.page -= 1;
+  pageSelect.value = searchVariables.page; 
+  getAdsAndPrint();
+
 }
 
 //RUN, RUN RUN YOUR CODE
@@ -201,8 +221,11 @@ getAdsByField();
 getDOM.nOfAdsForm.addEventListener('submit', displayNOfAds);
 //Fritextsök
 getDOM.jobSearch.addEventListener('submit', handleSearch);
-//Navigera till olika sidor
+//Navigera till vald sida i dropdown
 getDOM.choosePage.addEventListener('submit', navToPage);
+//Sidnavigering mha blädderknappar
+document.getElementById('forwardBtn').addEventListener('click', pageForward);
+document.getElementById('backBtn').addEventListener('click', pageBack);
 //dropdown för yrkesområden
 category.addEventListener('change', function () {
   let selectedValue = category.value;
