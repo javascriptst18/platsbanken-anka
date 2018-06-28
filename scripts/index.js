@@ -36,9 +36,9 @@ function getAdsAndPrint() {
     .then(response => response.json())
     .then(result => {
       //Visar antal jobb
-      searchVariables.numberOfJobs = result.matchningslista.antal_platsannonser;
-      searchVariables.lastPage =  result.matchningslista.antal_sidor;
-      jobs.innerHTML = '<h5>Lediga tjänster i länet: ' + searchVariables.numberOfJobs + '</h5>';
+/*       searchVariables.numberOfJobs = result.matchningslista.antal_platsannonser;
+ */   searchVariables.lastPage =  result.matchningslista.antal_sidor;
+      jobs.innerHTML = '<h5>Job applications available: ' + result.matchningslista.antal_platsannonser + '</h5>'; 
  
       pageNumber();
       getCardInfo(result);
@@ -130,9 +130,9 @@ slct1.addEventListener('change', function() {
           .then((res) => res.json())
           .then((data) =>{ 
             jobs.innerHTML = '<h5>Job applications available: ' + data.matchningslista.antal_platsannonser + '</h5>'; 
-            let clearCard = document.getElementById("card");
+/*             let clearCard = document.getElementById("card");
             clearCard.innerHTML = "";
-            getCardInfo(data);
+ */            getCardInfo(data);
           
       });
 
