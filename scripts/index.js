@@ -115,7 +115,8 @@ fetchLan();
 
 // Aktiveras bara när vi ändrar i dropdown, när vi trycker på specifikt län dras kortet för det länet ut. 
 slct1.addEventListener('change', function() {
-  let selectedValue = slct1.value;
+  // Nedan använder jag "this" funktionen som ersätter "slct1"
+  let selectedValue = this.value;
       fetch(`http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=${selectedValue}`)
           .then((res) => res.json())
           .then((data) =>{ 
