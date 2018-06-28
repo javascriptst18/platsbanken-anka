@@ -69,6 +69,10 @@ select {
   color: black;
 }
 
+label {
+  display: none;
+}
+
 
 @media (max-width: 760px) {
   nav {
