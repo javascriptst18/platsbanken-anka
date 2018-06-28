@@ -5,6 +5,7 @@
  * - Anpassningar
  * - Sökning
  * Koden körs
+ * Event listeners
  */
 
 //GLOBALA VARIABLER
@@ -162,8 +163,6 @@ function navToPage(event) {
 getAdsAndPrint();
 fetchLan();
 getAdsByField();
-
-
 
 //EVENT LISTENERS
 
