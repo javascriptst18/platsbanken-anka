@@ -42,7 +42,7 @@
       <h5>Job applications available</h5>
     </div>
 
-
+    <div class="numberOfJobs" id="jobs" name = "jobs"></div>
     <div id="fieldList"></div>
 
  <!--formulär som väljer hur många jobbannonser som visas på varje sida-->
@@ -53,21 +53,28 @@
         <option value="20">20</option>
         <option value="30">30</option>
       </select>
-      <input type="submit" value="Välj">
+      <input type="submit" value="Välj" class="gotoButton">
    </form>
 
  <!--div som fylls med JS-genererade kort med jobbannonser-->
     <div id="card"></div>
     
- <!--formulär som fylls med JS-genererade sidval-->
-    <form action="" id="choosePage">
+ <!--formulär som fylls med JS-genererade sidval, samt blädderknappar-->
+    <form action="" class="choosePage" id="choosePage">
+      <button id="backBtn" class="gotoButton"> << Föregående sida </button>
+
       <label for="pageSelect">sida</label>
       <select name="pageSelect" id="pageSelect"></select>
-      <input type="submit" value="Gå till sida">
+
+      <input type="submit" value="Gå till sida" class="gotoButton">
+      
+      <button id="forwardBtn" class="gotoButton">Nästa sida >></button>
+
+
     </form>
-
+    
   </div>
-
+<script src="scripts/jquery-3.3.1.min.js"></script>
   <script src="scripts/index.js"></script>
 </body>
 
