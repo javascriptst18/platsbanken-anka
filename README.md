@@ -202,3 +202,4 @@ Exempel:
 
 **Så**: visas den föregående sidan i träfflistan
 # platsbanken-anka
+# platsbanken
